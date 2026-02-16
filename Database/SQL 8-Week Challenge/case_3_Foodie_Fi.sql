@@ -209,8 +209,7 @@ WHERE plan_name = 'basic monthly'
 	  AND last_plan = 'pro monthly'
 	  AND EXTRACT(YEAR FROM start_date) = 2020
 
-
-
+-- MOST IMP
 -- C. Challenge Payment Question
 CREATE TABLE payments (
 	customer_id INT,
@@ -235,7 +234,7 @@ table_with_next_plan AS (
 	LEAD(start_date) OVER (
 		PARTITION BY customer_id
 		ORDER BY start_date
-	) next_plan_start_time
+	) next_plan_start_date
 	FROM data_of_2020
 	INNER JOIN plans USING(plan_id)
 ),
@@ -251,7 +250,7 @@ basic_monthly_null AS (
 	wt.customer_id,
 	wt.plan_id,
 	wt.plan_name,
-	wt.start_date,
+	-- wt.start_date,
 	ARRAY_AGG(gs.payment_date ORDER BY gs.payment_date) AS payment_dates,
 	9.9 amount
 	FROM without_trials wt
@@ -274,7 +273,7 @@ pro_monthly_null AS (
 	wt.customer_id,
 	wt.plan_id,
 	wt.plan_name,
-	wt.start_date,
+	-- wt.start_date,
 	ARRAY_AGG(gs.payment_date ORDER BY gs.payment_date) AS payment_dates,
 	19.9 amount
 	FROM without_trials wt
@@ -286,7 +285,7 @@ pro_monthly_null AS (
 	            EXTRACT(MONTH FROM AGE('2020-12-31', wt.start_date))
 	         ) AS g(n)
 	) gs ON TRUE
-	WHERE wt.plan_name = 'basic monthly'
+	WHERE wt.plan_name = 'pro monthly'
 	      AND wt.next_plan IS NULL
 	GROUP BY wt.customer_id, wt.plan_id, wt.plan_name, wt.start_date
 	ORDER BY wt.customer_id
@@ -297,7 +296,26 @@ pro_annual_null AS (
 	wt.customer_id,
 	wt.plan_id,
 	wt.plan_name,
-	wt.start_date,
+	ARRAY_AGG(gs.payment_date ORDER BY gs.payment_date) AS payment_dates,
+	199 amount
+	FROM without_trials wt
+	LEFT JOIN LATERAL (
+	    SELECT (wt.start_date + (n || ' month')::interval)::date AS payment_date
+	    FROM generate_series(
+	            0, 0
+	         ) AS g(n)
+	) gs ON TRUE
+	WHERE wt.plan_name = 'pro annual'
+	      AND wt.next_plan IS NULL
+	GROUP BY wt.customer_id, wt.plan_id, wt.plan_name, wt.start_date
+	ORDER BY wt.customer_id
+),
+
+basic_monthly_pro_monthly AS (
+	SELECT
+	wt.customer_id,
+	wt.plan_id,
+	wt.plan_name,
 	ARRAY_AGG(gs.payment_date ORDER BY gs.payment_date) AS payment_dates,
 	9.9 amount
 	FROM without_trials wt
@@ -305,24 +323,201 @@ pro_annual_null AS (
 	    SELECT (wt.start_date + (n || ' month')::interval)::date AS payment_date
 	    FROM generate_series(
 	            0,
-	            EXTRACT(YEAR  FROM AGE('2020-12-31', wt.start_date)) * 12 +
-	            EXTRACT(MONTH FROM AGE('2020-12-31', wt.start_date))
+				(
+		            EXTRACT(YEAR  FROM AGE(wt.next_plan_start_date, wt.start_date)) * 12 +
+		            EXTRACT(MONTH FROM AGE(wt.next_plan_start_date, wt.start_date))
+				) - 1
 	         ) AS g(n)
 	) gs ON TRUE
 	WHERE wt.plan_name = 'basic monthly'
-	      AND wt.next_plan IS NULL
-	GROUP BY wt.customer_id, wt.plan_id, wt.plan_name, wt.start_date
-	ORDER BY wt.customer_id
+	      AND wt.next_plan = 'pro monthly'
+	GROUP BY wt.customer_id, wt.plan_id, wt.plan_name, wt.start_date, wt.next_plan_start_date
+
+	UNION ALL 
+
+	SELECT
+	wt.customer_id,
+	wt.plan_id,
+	wt.next_plan,
+	ARRAY_AGG(gs.payment_date ORDER BY gs.payment_date) AS payment_dates,
+	19.9 - 9.9 amount
+	FROM without_trials wt
+	LEFT JOIN LATERAL (
+	    SELECT (wt.next_plan_start_date + (n || ' month')::interval)::date AS payment_date
+	    FROM generate_series(
+	            0, 0
+	         ) AS g(n)
+	) gs ON TRUE
+	WHERE wt.plan_name = 'basic monthly'
+	      AND wt.next_plan = 'pro monthly'
+	GROUP BY wt.customer_id, wt.plan_id, wt.plan_name, wt.next_plan, wt.start_date, wt.next_plan_start_date
+
+	UNION ALL 
+
+	SELECT
+	wt.customer_id,
+	wt.plan_id,
+	wt.next_plan,
+	ARRAY_AGG(gs.payment_date ORDER BY gs.payment_date) AS payment_dates,
+	19.9 amount
+	FROM without_trials wt
+	LEFT JOIN LATERAL (
+	    SELECT (wt.start_date + (n || ' month')::interval)::date AS payment_date
+	    FROM generate_series(
+	            0,
+				(
+		            EXTRACT(YEAR  FROM AGE('2020-12-31', wt.next_plan_start_date)) * 12 +
+		            EXTRACT(MONTH FROM AGE('2020-12-31', wt.next_plan_start_date))
+				)
+	         ) AS g(n)
+	) gs ON TRUE
+	WHERE wt.plan_name = 'basic monthly'
+	      AND wt.next_plan = 'pro monthly'
+	GROUP BY wt.customer_id, wt.plan_id, wt.plan_name, wt.next_plan, wt.start_date, wt.next_plan_start_date
+),
+
+basic_monthly_pro_annual AS (
+	SELECT
+	wt.customer_id,
+	wt.plan_id,
+	wt.plan_name,
+	ARRAY_AGG(gs.payment_date ORDER BY gs.payment_date) AS payment_dates,
+	9.9 amount
+	FROM without_trials wt
+	LEFT JOIN LATERAL (
+	    SELECT (wt.start_date + (n || ' month')::interval)::date AS payment_date
+	    FROM generate_series(
+	            0,
+				(
+		            EXTRACT(YEAR  FROM AGE(wt.next_plan_start_date, wt.start_date)) * 12 +
+		            EXTRACT(MONTH FROM AGE(wt.next_plan_start_date, wt.start_date))
+				) - 1
+	         ) AS g(n)
+	) gs ON TRUE
+	WHERE wt.plan_name = 'basic monthly'
+	      AND wt.next_plan = 'pro annual'
+	GROUP BY wt.customer_id, wt.plan_id, wt.plan_name, wt.start_date, wt.next_plan_start_date
+
+	UNION ALL 
+
+	SELECT
+	wt.customer_id,
+	wt.plan_id,
+	wt.next_plan,
+	ARRAY_AGG(gs.payment_date ORDER BY gs.payment_date) AS payment_dates,
+	199 - 9.9 amount
+	FROM without_trials wt
+	LEFT JOIN LATERAL (
+	    SELECT (wt.next_plan_start_date + (n || ' month')::interval)::date AS payment_date
+	    FROM generate_series(
+	            0, 0
+	         ) AS g(n)
+	) gs ON TRUE
+	WHERE wt.plan_name = 'basic monthly'
+	      AND wt.next_plan = 'pro annual'
+	GROUP BY wt.customer_id, wt.plan_id, wt.plan_name, wt.next_plan, wt.start_date, wt.next_plan_start_date
 ),
 
 
+pro_monthly_pro_annual AS (
+
+    SELECT
+        wt.customer_id,
+        wt.plan_id,
+        wt.plan_name,
+        ARRAY_REMOVE(ARRAY_AGG(gs.payment_date ORDER BY gs.payment_date), NULL) AS payment_dates,
+        19.9 AS amount
+    FROM without_trials wt
+    LEFT JOIN LATERAL (
+        SELECT (wt.start_date + (n || ' month')::interval)::date AS payment_date
+        FROM generate_series(
+            0,
+            CEIL(
+                (
+                    EXTRACT(YEAR  FROM AGE(wt.next_plan_start_date, wt.start_date)) * 12 +
+                    EXTRACT(MONTH FROM AGE(wt.next_plan_start_date, wt.start_date)) +
+                    EXTRACT(DAY FROM AGE(wt.next_plan_start_date, wt.start_date)) / 31.0
+                )
+            )::int - 1
+        ) AS g(n)
+    ) gs ON TRUE
+    WHERE wt.plan_name = 'pro monthly'
+      AND wt.next_plan = 'pro annual'
+    GROUP BY wt.customer_id, wt.plan_id, wt.plan_name, wt.start_date, wt.next_plan_start_date
+
+    UNION ALL
+
+    SELECT
+        wt.customer_id,
+        wt.plan_id,
+        'pro annual' AS plan_name,
+        ARRAY_REMOVE(ARRAY_AGG(gs.payment_date ORDER BY gs.payment_date), NULL) AS payment_dates,
+        199 AS amount
+    FROM without_trials wt
+    LEFT JOIN LATERAL (
+        SELECT (wt.start_date + (n || ' month')::interval)::date AS payment_date
+        FROM generate_series(
+            CEIL(
+                (
+                    EXTRACT(YEAR  FROM AGE(wt.next_plan_start_date, wt.start_date)) * 12 +
+                    EXTRACT(MONTH FROM AGE(wt.next_plan_start_date, wt.start_date)) +
+                    EXTRACT(DAY FROM AGE(wt.next_plan_start_date, wt.start_date)) / 31.0
+                )
+            )::int,
+            CEIL(
+                (
+                    EXTRACT(YEAR  FROM AGE(wt.next_plan_start_date, wt.start_date)) * 12 +
+                    EXTRACT(MONTH FROM AGE(wt.next_plan_start_date, wt.start_date)) +
+                    EXTRACT(DAY FROM AGE(wt.next_plan_start_date, wt.start_date)) / 31.0
+                )
+            )::int
+        ) AS g(n)
+    ) gs ON TRUE
+    WHERE wt.plan_name = 'pro monthly'
+      AND wt.next_plan = 'pro annual'
+    GROUP BY wt.customer_id, wt.plan_id, wt.start_date, wt.next_plan_start_date
+),
 
 
+all_arrays AS (
+
+    SELECT * FROM basic_monthly_null
+    UNION ALL SELECT * FROM pro_monthly_null
+    UNION ALL SELECT * FROM pro_annual_null
+    UNION ALL SELECT * FROM basic_monthly_pro_monthly
+    UNION ALL SELECT * FROM basic_monthly_pro_annual
+    UNION ALL SELECT * FROM pro_monthly_pro_annual
+
+),
+
+expanded AS (
+    SELECT
+        customer_id,
+        plan_id,
+        plan_name,
+        amount,
+        payment_date
+    FROM all_arrays
+    CROSS JOIN LATERAL UNNEST(payment_dates) AS payment_date
+)
+
+INSERT INTO payments (customer_id, plan_id, plan_name, payment_date, amount, payment_order)
+
+SELECT
+    customer_id,
+    plan_id,
+    plan_name,
+    payment_date,
+    amount,
+    ROW_NUMBER() OVER (
+        PARTITION BY customer_id
+        ORDER BY payment_date
+    ) AS payment_order
+FROM expanded
+ORDER BY customer_id, payment_date;
 
 
-
-
-
+SELECT * FROM payments
 
 
 
