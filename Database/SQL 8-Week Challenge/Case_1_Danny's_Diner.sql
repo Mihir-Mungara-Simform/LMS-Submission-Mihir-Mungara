@@ -93,8 +93,6 @@ menu USING(product_id)
 WHERE items_rank = 1
 GROUP BY customer_id;
 
-
-
 -- Question 4 :- What is the most purchased item on the menu and how many times was it purchased by all customers?
 SELECT Product_Name Most_Purchased_Item,
 COUNT(product_id) No_of_Times_Purchased
@@ -102,8 +100,6 @@ FROM sales s
 INNER JOIN menu m USING(product_id)
 GROUP BY product_name
 FETCH NEXT 1 ROW ONLY;
-
-
 
 -- Question 5 :- Which item was the most popular for each customer?
 WITH item_cnt AS (
@@ -130,8 +126,6 @@ WHERE popularity_rank = 1
 GROUP BY customer_id
 ORDER BY customer_id;
 
-
-
 -- Question 6 :- Which item was purchased first by the customer after they became a member?
 -- Assumption :- taking same day in count 
 WITH after_membership AS (
@@ -157,8 +151,6 @@ INNER JOIN
 menu USING(product_id)
 where date_after_membership = 1
 ORDER BY customer_id;
-
-
 
 -- Question 7 :- Which item was purchased just before the customer became a member?
 -- Assumption :- day of joining is not counted
@@ -187,8 +179,6 @@ where date_before_membership = 1
 GROUP BY customer_id
 ORDER BY customer;
 
-
-
 -- Question 8 :- What is the total items and amount spent for each member before they became a member?
 WITH before_membership AS (
 	SELECT s.customer_id, s.product_id, s.order_date, m.join_date
@@ -207,8 +197,6 @@ menu USING(product_id)
 GROUP BY customer_id
 ORDER BY customer;
 
-
-
 -- Question 9 :- If each $1 spent equates to 10 points and 
 -- sushi has a 2x points multiplier - how many points would each customer have?
 -- Assumption :- price given is assumed to be in dollars($)
@@ -224,8 +212,6 @@ INNER JOIN
 menu USING(product_id)
 GROUP BY customer_id
 ORDER BY customer_id;
-
-
 
 -- Question 10 :- In the first week after a customer joins the program 
 -- (including their join date) they earn 2x points on all items, 

@@ -29,7 +29,6 @@ WHERE EXTRACT(YEAR FROM start_date) > 2020
 GROUP BY plan_name
 order by plan_name
 
-
 -- Query 4 : What is the customer count and percentage of customers
 -- 			 who have churned rounded to 1 decimal place?
 WITH total_customers AS (
@@ -46,7 +45,6 @@ churned AS (
 
 SELECT counts_churned, ROUND((counts_churned * 100.0) / counts_total , 1) percentage_of_customers
 FROM total_customers, churned;
-
 
 -- Query 5 : How many customers have churned straight after their initial free trial 
 -- 			 what percentage is this rounded to the nearest whole number?
@@ -102,7 +100,6 @@ FROM total_customers, next_after_trial
 GROUP BY next_plan, counts_total
 ORDER BY next_plan
 
-
 -- Query 7 : What is the customer count and percentage breakdown of all 5 plan_name values at 2020-12-31?
 WITH customer_specified AS (
 	SELECT * FROM subscriptions 
@@ -134,14 +131,12 @@ FROM last_plans, count_total
 GROUP BY plan_name, total
 ORDER BY plan_name
 
-
 -- Query 8 : How many customers have upgraded to an annual plan in 2020?
 SELECT COUNT(DISTINCT customer_id) customers_upgraded_to_annual_plans
 FROM subscriptions
 INNER JOIN plans USING(plan_id)
 WHERE EXTRACT(YEAR FROM start_date) = 2020
 	  AND plan_name LIKE '%annual'
-
 
 -- Query 9 : How many days on average does it take for a customer to 
 --			 an annual plan from the day they join Foodie-Fi?
@@ -162,7 +157,6 @@ trial AS(
 SELECT ROUND(AVG(a.start_date - t.start_date), 2) :: int avg_days_from_trial_to_annual
 FROM annual a
 INNER JOIN trial t USING(customer_id)
-
 
 -- Query 10 : Can you further breakdown this average value into 
 -- 			  30 day periods (i.e. 0-30 days, 31-60 days etc)
@@ -190,8 +184,6 @@ SELECT (date_diff / 30 + 1) thirty_days_period_number, COUNT(*) no_of_customers
 FROM diff
 GROUP BY thirty_days_period_number
 
-
-
 -- Query 11 : How many customers downgraded from a pro monthly to a basic monthly plan in 2020?
 WITH base AS (
 	SELECT customer_id, plan_name, start_date,
@@ -208,6 +200,7 @@ base
 WHERE plan_name = 'basic monthly'
 	  AND last_plan = 'pro monthly'
 	  AND EXTRACT(YEAR FROM start_date) = 2020
+
 
 -- MOST IMP
 -- C. Challenge Payment Question
@@ -417,7 +410,6 @@ basic_monthly_pro_annual AS (
 	      AND wt.next_plan = 'pro annual'
 	GROUP BY wt.customer_id, wt.plan_id, wt.plan_name, wt.next_plan, wt.start_date, wt.next_plan_start_date
 ),
-
 
 pro_monthly_pro_annual AS (
 

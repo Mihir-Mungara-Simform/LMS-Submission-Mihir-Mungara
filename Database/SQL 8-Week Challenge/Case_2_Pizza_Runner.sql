@@ -300,7 +300,6 @@ ORDER BY Day_of_Week;
 
 
 -- B. Runner and Customer Experience
--- select max(registration_date) from runners;
 
 -- Query 1 : How many runners signed up for each 1 week period? (i.e. week starts 2021-01-01)
 SELECT (registration_date - DATE '2021-01-01') / 7 + 1 AS week_no, count(*) signed_up
@@ -321,7 +320,6 @@ INNER JOIN runner_orders USING(order_id)
 WHERE cancellation IS NULL
 GROUP BY runner_id
 ORDER BY runner_id;
-
 
 -- Query 3 : Is there any relationship between the number of pizzas and how long the order takes to prepare?
 -- Assuming difference between pickup time and order time as time to prepare an order
@@ -383,7 +381,6 @@ ORDER BY runner_id;
 
 
 -- C. Ingredient Optimisation
-
 
 -- Query 1 : What are the standard ingredients for each pizza?
 SELECT pizza_id, ARRAY_AGG(topping_name) standard_ingredients
@@ -630,7 +627,6 @@ INNER JOIN pizza_names USING(pizza_id)
 INNER JOIN runner_orders USING(order_id)
 WHERE cancellation IS NULL;
 
-
 -- Query 3 : The Pizza Runner team now wants to add an additional ratings system 
 --			 that allows customers to rate their runner, how would you design an 
 --           additional table for this new dataset - generate a schema for this new table 
@@ -656,8 +652,6 @@ INSERT INTO ratings (customer_id, order_id, runner_id, rating, description) VALU
 
 
 SELECT * FROM ratings;
-
-
 
 -- Query 4 : Using your newly generated table - can you join all of the information together to 
 -- 			 form a table which has the following information for successful deliveries?
@@ -694,7 +688,6 @@ GROUP BY r.customer_id,
 	   duration_min, 
 	   ROUND((ro.distance_km / ro.duration_min) * 60, 2)
 ORDER BY customer_id, order_id, runner_id
-
 
 -- Query 5 : If a Meat Lovers pizza was $12 and Vegetarian $10 fixed prices with no cost
 --		     for extras and each runner is paid $0.30 per kilometre traveled - 

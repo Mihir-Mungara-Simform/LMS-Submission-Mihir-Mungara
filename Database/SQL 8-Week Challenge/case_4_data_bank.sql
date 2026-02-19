@@ -140,7 +140,6 @@ FROM month_end
 WHERE rn = 1
 ORDER BY customer_id, month;
 
-
 -- Query 5 : What is the percentage of customers who increase their 
 -- 			 closing balance by more than 5%?
 WITH txn AS (
