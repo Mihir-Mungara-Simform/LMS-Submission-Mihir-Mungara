@@ -2,6 +2,7 @@
 with open('students.txt', 'r') as f:
     lines = f.readlines()
 
+# Save the updated data back to the file.
 with open('students.txt', '+w') as f:
     for line in lines:
         if 'Sophie' in line:

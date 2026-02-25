@@ -16,5 +16,8 @@ with open('paragraph.txt', 'r') as f:
                 word_dict[ind_word] += 1
         word_count += len(arr_word)
 
+# Count the total number of words in the file.
 print(f'total number of words in the file :- {word_count}')
-print(word_dict)
+
+# Count the occurrences of a specific word entered by the user.
+print(f'word sictionary :- {word_dict}')
