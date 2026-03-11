@@ -2,13 +2,18 @@
 import pandas as pd
 import logging
 import io
+import os
 
 # -------------------------------------- Task 0: Logging Setup --------------------------------------
 
 # setting up filehandler, formatter and logger for file
 file_logger = logging.getLogger('file_logger')
 file_logger.setLevel(logging.INFO)
-f_handler = logging.FileHandler('logs.txt')
+
+base_dir = os.path.dirname(__file__)
+log_path = os.path.join(base_dir, "logs.txt")
+
+f_handler = logging.FileHandler(log_path)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 f_handler.setFormatter(formatter)
 file_logger.addHandler(f_handler)
@@ -31,7 +36,7 @@ stream_logger.info('Start of Task-1 \n')
 
 # Loaded the employees.csv dataset into a suitable in-memory structure and Ensured that date fields are parsed correctly
 try:
-    df = pd.read_csv('numpy_assignment/employees.csv', 
+    df = pd.read_csv(r'C:\Users\mihir.mungara\Desktop\LMS_Assignments\Python\Numpy Assignment\employees.csv', 
                     header='infer', 
                     parse_dates=['Joining_Date'], 
                     dayfirst= True)
@@ -186,7 +191,8 @@ try:
     df = df[['Employee_ID','Name','Age','Department','Salary','Years_In_Company']]
 
     # Export the final dataset to JSON format.
-    df.to_json('cleaned_employees.json', orient='records', indent=4)
+    json_path = os.path.join(base_dir, "cleaned_employees.json")
+    df.to_json(json_path, orient="records", indent=4)
 
     # Log successful data export and record count
     file_logger.info(f'Data exported successfully to cleaned_employees.json with {len(df)} records. \n')

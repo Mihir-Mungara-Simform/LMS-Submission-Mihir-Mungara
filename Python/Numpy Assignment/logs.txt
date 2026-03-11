@@ -1,0 +1,102 @@
+2026-03-11 16:42:37,913 - file_logger - INFO - Start of pipeline 
+
+2026-03-11 16:42:37,913 - file_logger - INFO - Start of Task-1 
+
+2026-03-11 16:42:37,932 - file_logger - INFO - <class 'pandas.DataFrame'>
+RangeIndex: 100 entries, 0 to 99
+Data columns (total 7 columns):
+ #   Column        Non-Null Count  Dtype         
+---  ------        --------------  -----         
+ 0   Employee_ID   100 non-null    int64         
+ 1   Name          100 non-null    str           
+ 2   Age           84 non-null     float64       
+ 3   Department    100 non-null    str           
+ 4   Salary        92 non-null     float64       
+ 5   Joining_Date  100 non-null    datetime64[us]
+ 6   Resigned      100 non-null    bool          
+dtypes: bool(1), datetime64[us](1), float64(2), int64(1), str(2)
+memory usage: 4.9 KB
+
+
+2026-03-11 16:42:37,933 - file_logger - INFO - Total records loaded: 100 
+
+2026-03-11 16:42:37,933 - file_logger - INFO - End of Task-1 
+
+2026-03-11 16:42:37,934 - file_logger - INFO - Start of Task-2 
+
+2026-03-11 16:42:37,937 - file_logger - INFO - Missing values per column:
+Employee_ID      0
+Name             0
+Age             16
+Department       0
+Salary           8
+Joining_Date     0
+Resigned         0
+dtype: int64 
+
+2026-03-11 16:42:37,938 - file_logger - INFO - Replaced missing Age values using the median of the available data
+
+2026-03-11 16:42:37,938 - file_logger - INFO - Replaced missing Salary values using the mean of the available data
+
+2026-03-11 16:42:37,939 - file_logger - INFO - Detected and removed duplicate employee records based on Employee_ID
+
+2026-03-11 16:42:37,939 - file_logger - INFO - Standardized column naming for consistency
+
+2026-03-11 16:42:37,939 - file_logger - INFO - Ensured that all columns are stored using appropriate data types
+
+2026-03-11 16:42:37,939 - file_logger - INFO - End of Task-2 
+
+2026-03-11 16:42:37,939 - file_logger - INFO - Start of Task-3 
+
+2026-03-11 16:42:37,954 - file_logger - INFO - rows before filtering:- 100 and rows after filtering- 49
+
+2026-03-11 16:42:37,954 - file_logger - INFO - End of Task-3 
+
+2026-03-11 16:42:37,955 - file_logger - INFO - Start of Task-4 
+
+2026-03-11 16:42:37,961 - file_logger - INFO - Analytics_Report :- 
+                   Salary    Age
+Department                     
+Finance     57641.243659  41.25
+HR          60654.057745  42.50
+IT          59125.545455  45.50
+Marketing   61567.984783  45.50 
+
+2026-03-11 16:42:37,982 - file_logger - INFO - 
+Before 10% increment in IT department Salary:- 
+     Employee_ID               Name   Age Department   Salary Joining_Date  Resigned  YearsInCompany
+0          1001        Steven Dunn  30.0         IT  46846.0   2024-06-09     False               1
+1          1002    Jennifer Romero  54.0         IT  43585.0   2018-02-07     False               8
+15         1016       Karina Allen  46.0         IT  66746.0   2019-02-04     False               7
+25         1026      Eric Mckinney  48.0         IT  58591.0   2018-05-08     False               7
+32         1033       Joshua Meyer  54.0         IT  80900.0   2017-04-28     False               8
+38         1039       Paul Shaffer  31.0         IT  65119.0   2021-08-23     False               4
+43         1044          Mary Cole  25.0         IT  49209.0   2023-11-29     False               2
+44         1045         Joan Davis  57.0         IT  81102.0   2023-10-19     False               2
+75         1076     Veronica Price  36.0         IT  55419.0   2017-06-26     False               8
+93         1094      Patrick Smith  45.5         IT  41643.0   2016-07-04     False               9
+96         1097  Matthew Alexander  25.0         IT  61221.0   2018-11-18     False               7
+ 
+ After 10% increment in IT department Salary:- 
+    Employee_ID               Name   Age Department   Salary Joining_Date  Resigned  YearsInCompany
+0          1001        Steven Dunn  30.0         IT  51530.6   2024-06-09     False               1
+1          1002    Jennifer Romero  54.0         IT  47943.5   2018-02-07     False               8
+15         1016       Karina Allen  46.0         IT  73420.6   2019-02-04     False               7
+25         1026      Eric Mckinney  48.0         IT  64450.1   2018-05-08     False               7
+32         1033       Joshua Meyer  54.0         IT  88990.0   2017-04-28     False               8
+38         1039       Paul Shaffer  31.0         IT  71630.9   2021-08-23     False               4
+43         1044          Mary Cole  25.0         IT  54129.9   2023-11-29     False               2
+44         1045         Joan Davis  57.0         IT  89212.2   2023-10-19     False               2
+75         1076     Veronica Price  36.0         IT  60960.9   2017-06-26     False               8
+93         1094      Patrick Smith  45.5         IT  45807.3   2016-07-04     False               9
+96         1097  Matthew Alexander  25.0         IT  67343.1   2018-11-18     False               7 
+
+2026-03-11 16:42:38,000 - file_logger - INFO - End of Task-4 
+
+2026-03-11 16:42:38,000 - file_logger - INFO - Start of Task-5 
+
+2026-03-11 16:42:38,003 - file_logger - INFO - Data exported successfully to cleaned_employees.json with 49 records. 
+
+2026-03-11 16:42:38,003 - file_logger - INFO - End of Task-5 
+
+2026-03-11 16:42:38,003 - file_logger - INFO - Pipeline completed successfully
