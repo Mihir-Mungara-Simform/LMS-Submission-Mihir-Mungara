@@ -1,0 +1,387 @@
+[
+    {
+        "timestamp": "2025-01-07 14:32:10",
+        "level": "INFO:",
+        "message": "User john_doe logged in from IP 192.168.1.10"
+    },
+    {
+        "timestamp": "2025-01-07 14:35:20",
+        "level": "WARNING:",
+        "message": "Unauthorized access attempt detected from IP 203.123.45.67"
+    },
+    {
+        "timestamp": "2025-01-07 14:40:30",
+        "level": "INFO:",
+        "message": "User jane_smith performed action 'UPDATE' on record 54321"
+    },
+    {
+        "timestamp": "2025-01-07 14:40:41",
+        "level": "CRITICAL:",
+        "message": "User charlie detected suspicious activity from IP 203.0.113.237"
+    },
+    {
+        "timestamp": "2025-01-07 14:45:00",
+        "level": "ERROR:",
+        "message": "Database connection failed with error code DB_ERR_1049"
+    },
+    {
+        "timestamp": "2025-01-07 14:50:15",
+        "level": "INFO:",
+        "message": "User admin created a new record with ID: 67890"
+    },
+    {
+        "timestamp": "2025-01-07 14:55:45",
+        "level": "CRITICAL:",
+        "message": "System rebooted by admin at 14:55"
+    },
+    {
+        "timestamp": "2025-01-07 14:57:54",
+        "level": "WARNING:",
+        "message": "User charlie sent an email to charlie@domain.org"
+    },
+    {
+        "timestamp": "2025-01-07 15:00:10",
+        "level": "INFO:",
+        "message": "User alice logged in from IP 192.168.1.20"
+    },
+    {
+        "timestamp": "2025-01-07 15:05:30",
+        "level": "WARNING:",
+        "message": "Failed login attempt from IP 198.51.100.2"
+    },
+    {
+        "timestamp": "2025-01-07 15:10:45",
+        "level": "ERROR:",
+        "message": "Invalid user credentials for user bob"
+    },
+    {
+        "timestamp": "2025-01-07 15:15:00",
+        "level": "INFO:",
+        "message": "User jane_smith performed action 'DELETE' on record 98765"
+    },
+    {
+        "timestamp": "2025-01-07 15:20:30",
+        "level": "CRITICAL:",
+        "message": "Unexpected shutdown detected at 15:20"
+    },
+    {
+        "timestamp": "2025-01-07 15:25:45",
+        "level": "INFO:",
+        "message": "User john_doe logged out"
+    },
+    {
+        "timestamp": "2025-01-07 15:27:56",
+        "level": "CRITICAL:",
+        "message": "User charlie downloaded file summary.xlsx"
+    },
+    {
+        "timestamp": "2025-01-07 15:30:10",
+        "level": "WARNING:",
+        "message": "IP 203.123.45.67 tried accessing restricted area"
+    },
+    {
+        "timestamp": "2025-01-07 15:35:20",
+        "level": "ERROR:",
+        "message": "Database connection failed with error code DB_ERR_1050"
+    },
+    {
+        "timestamp": "2025-01-07 15:40:30",
+        "level": "INFO:",
+        "message": "User admin created a new record with ID: 11223"
+    },
+    {
+        "timestamp": "2025-01-07 15:45:00",
+        "level": "INFO:",
+        "message": "User alice performed action 'UPDATE' on record 67890"
+    },
+    {
+        "timestamp": "2025-01-07 15:50:15",
+        "level": "ERROR:",
+        "message": "Failed to access resource with error code DB_ERR_1045"
+    },
+    {
+        "timestamp": "2025-01-07 15:55:45",
+        "level": "CRITICAL:",
+        "message": "Disk space running low on server XYZ at 15:55"
+    },
+    {
+        "timestamp": "2025-01-07 16:00:00",
+        "level": "INFO:",
+        "message": "User john_doe logged in from IP 192.168.1.30"
+    },
+    {
+        "timestamp": "2025-01-07 16:04:57",
+        "level": "ERROR:",
+        "message": "User charlie contacted support at 555-666-7777"
+    },
+    {
+        "timestamp": "2025-01-07 16:05:30",
+        "level": "WARNING:",
+        "message": "Unauthorized IP address 203.123.45.68 detected"
+    },
+    {
+        "timestamp": "2025-01-07 16:10:00",
+        "level": "INFO:",
+        "message": "User jane_smith performed action 'UPDATE' on record 54321"
+    },
+    {
+        "timestamp": "2025-01-07 16:15:30",
+        "level": "ERROR:",
+        "message": "Failed database backup with error code DB_ERR_1060"
+    },
+    {
+        "timestamp": "2025-01-07 16:20:45",
+        "level": "CRITICAL:",
+        "message": "Emergency maintenance required on server XYZ"
+    },
+    {
+        "timestamp": "2025-01-07 16:25:10",
+        "level": "INFO:",
+        "message": "User admin created a new record with ID: 44556"
+    },
+    {
+        "timestamp": "2025-01-07 16:30:15",
+        "level": "WARNING:",
+        "message": "IP 198.51.100.3 failed login attempt"
+    },
+    {
+        "timestamp": "2025-01-07 16:35:00",
+        "level": "ERROR:",
+        "message": "Service unavailable at server XYZ with error code DB_ERR_1071"
+    },
+    {
+        "timestamp": "2025-01-07 16:40:30",
+        "level": "INFO:",
+        "message": "User bob logged in from IP 192.168.1.40"
+    },
+    {
+        "timestamp": "2025-01-07 16:45:00",
+        "level": "INFO:",
+        "message": "User alice performed action 'DELETE' on record 11223"
+    },
+    {
+        "timestamp": "2025-01-07 16:50:45",
+        "level": "CRITICAL:",
+        "message": "Unexpected downtime detected at server XYZ"
+    },
+    {
+        "timestamp": "2025-01-07 16:55:00",
+        "level": "INFO:",
+        "message": "User jane_smith logged out"
+    },
+    {
+        "timestamp": "2025-01-07 17:00:10",
+        "level": "INFO:",
+        "message": "User john_doe logged in from IP 192.168.1.50"
+    },
+    {
+        "timestamp": "2025-01-07 17:05:30",
+        "level": "ERROR:",
+        "message": "Database connection failed with error code DB_ERR_1080"
+    },
+    {
+        "timestamp": "2025-01-07 17:10:00",
+        "level": "INFO:",
+        "message": "User admin created a new record with ID: 55667"
+    },
+    {
+        "timestamp": "2025-01-07 17:15:30",
+        "level": "CRITICAL:",
+        "message": "Memory usage exceeded on server XYZ at 17:15"
+    },
+    {
+        "timestamp": "2025-01-07 17:20:45",
+        "level": "WARNING:",
+        "message": "Failed login attempt from IP 198.51.100.4"
+    },
+    {
+        "timestamp": "2025-01-07 17:25:00",
+        "level": "INFO:",
+        "message": "User jane_smith logged out"
+    },
+    {
+        "timestamp": "2025-01-07 17:30:00",
+        "level": "ERROR:",
+        "message": "Invalid session for user bob"
+    },
+    {
+        "timestamp": "2025-01-07 17:35:10",
+        "level": "INFO:",
+        "message": "User alice logged out"
+    },
+    {
+        "timestamp": "2025-01-07 17:40:30",
+        "level": "WARNING:",
+        "message": "IP 203.123.45.69 attempted to bypass security"
+    },
+    {
+        "timestamp": "2025-01-07 17:45:00",
+        "level": "CRITICAL:",
+        "message": "System overload detected at server XYZ"
+    },
+    {
+        "timestamp": "2025-01-07 17:50:15",
+        "level": "INFO:",
+        "message": "User admin logged out"
+    },
+    {
+        "timestamp": "2025-01-07 17:55:45",
+        "level": "ERROR:",
+        "message": "Database timeout error with error code DB_ERR_1090"
+    },
+    {
+        "timestamp": "2025-01-07 18:00:00",
+        "level": "INFO:",
+        "message": "User john_doe logged in from IP 192.168.1.60"
+    },
+    {
+        "timestamp": "2025-01-07 18:02:50",
+        "level": "INFO:",
+        "message": "User charlie updated record in the database User charlie's permissions updated"
+    },
+    {
+        "timestamp": "2025-01-07 18:05:30",
+        "level": "WARNING:",
+        "message": "Unauthorized access attempt from IP 198.51.100.5"
+    },
+    {
+        "timestamp": "2025-01-07 18:10:00",
+        "level": "INFO:",
+        "message": "User jane_smith performed action 'UPDATE' on record 23456"
+    },
+    {
+        "timestamp": "2025-01-07 18:15:30",
+        "level": "ERROR:",
+        "message": "Database error with error code DB_ERR_1100"
+    },
+    {
+        "timestamp": "2025-01-07 18:20:00",
+        "level": "INFO:",
+        "message": "User alice created a new record with ID: 66788"
+    },
+    {
+        "timestamp": "2025-01-07 18:25:00",
+        "level": "CRITICAL:",
+        "message": "Server XYZ restart required due to critical error"
+    },
+    {
+        "timestamp": "2025-01-07 18:30:15",
+        "level": "INFO:",
+        "message": "User bob logged in from IP 192.168.1.70"
+    },
+    {
+        "timestamp": "2025-01-07 18:35:30",
+        "level": "WARNING:",
+        "message": "Failed login attempt from IP 198.51.100.6"
+    },
+    {
+        "timestamp": "2025-01-07 18:40:00",
+        "level": "ERROR:",
+        "message": "Database connection error with error code DB_ERR_1111"
+    },
+    {
+        "timestamp": "2025-01-07 18:45:30",
+        "level": "INFO:",
+        "message": "User john_doe performed action 'UPDATE' on record 98765"
+    },
+    {
+        "timestamp": "2025-01-07 18:50:45",
+        "level": "CRITICAL:",
+        "message": "High CPU usage detected at server XYZ"
+    },
+    {
+        "timestamp": "2025-01-07 18:55:00",
+        "level": "INFO:",
+        "message": "User alice logged out"
+    },
+    {
+        "timestamp": "2025-01-07 19:00:10",
+        "level": "INFO:",
+        "message": "User jane_smith logged in from IP 192.168.1.80"
+    },
+    {
+        "timestamp": "2025-01-07 19:05:30",
+        "level": "WARNING:",
+        "message": "Unauthorized access detected from IP 203.123.45.70"
+    },
+    {
+        "timestamp": "2025-01-07 19:10:00",
+        "level": "INFO:",
+        "message": "User admin logged out"
+    },
+    {
+        "timestamp": "2025-01-07 19:15:00",
+        "level": "ERROR:",
+        "message": "DB_ERR_1120 encountered during database query"
+    },
+    {
+        "timestamp": "2025-01-07 19:20:30",
+        "level": "INFO:",
+        "message": "User bob logged in from IP 192.168.1.90"
+    },
+    {
+        "timestamp": "2025-01-07 19:25:15",
+        "level": "CRITICAL:",
+        "message": "Data loss reported on server XYZ at 19:25"
+    },
+    {
+        "timestamp": "2025-01-07 19:30:00",
+        "level": "INFO:",
+        "message": "User alice logged in from IP 192.168.1.100"
+    },
+    {
+        "timestamp": "2025-01-07 19:35:15",
+        "level": "WARNING:",
+        "message": "IP 198.51.100.7 failed login attempt"
+    },
+    {
+        "timestamp": "2025-01-07 19:40:30",
+        "level": "ERROR:",
+        "message": "Timeout error during database query with error code DB_ERR_1130"
+    },
+    {
+        "timestamp": "2025-01-07 19:45:00",
+        "level": "INFO:",
+        "message": "User john_doe logged out"
+    },
+    {
+        "timestamp": "2025-01-07 19:50:30",
+        "level": "CRITICAL:",
+        "message": "System error occurred on server XYZ at 19:50"
+    },
+    {
+        "timestamp": "2025-01-07 19:55:45",
+        "level": "INFO:",
+        "message": "User admin logged in from IP 192.168.1.110"
+    },
+    {
+        "timestamp": "2025-01-07 20:00:00",
+        "level": "WARNING:",
+        "message": "IP 198.51.100.8 attempted unauthorized access"
+    },
+    {
+        "timestamp": "2025-01-07 20:05:30",
+        "level": "INFO:",
+        "message": "User jane_smith logged in from IP 192.168.1.120"
+    },
+    {
+        "timestamp": "2025-01-07 20:10:00",
+        "level": "ERROR:",
+        "message": "Database connection failed with error code DB_ERR_1140"
+    },
+    {
+        "timestamp": "2025-01-07 20:15:00",
+        "level": "INFO:",
+        "message": "User alice logged out"
+    },
+    {
+        "timestamp": "2025-01-07 20:20:15",
+        "level": "INFO:",
+        "message": "User john_doe logged in from IP 192.168.1.130"
+    },
+    {
+        "timestamp": "2025-01-07 20:25:00",
+        "level": "CRITICAL:",
+        "message": "System overload detected at server XYZ at 20:25"
+    }
+]
