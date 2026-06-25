@@ -645,8 +645,7 @@ Estimated Total:
 
 Mihir Mungara
 
-B.Tech Computer Engineering
-Nirma University
+Simform
 
 Data Engineering Internship Project
 
